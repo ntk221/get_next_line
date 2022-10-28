@@ -6,28 +6,13 @@
 /*   By: kazuki <kazuki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 22:07:54 by kazuki            #+#    #+#             */
-/*   Updated: 2022/10/26 23:40:19 by kazuki           ###   ########.fr       */
+/*   Updated: 2022/10/28 20:50:19 by kazuki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 #include <string.h>
-
-char	*ft_strchr(char *str, int c)
-{
-	if (str == NULL)
-		return (NULL);
-	if (c == '\0')
-		return ((char *)(str + ft_strlen(str)));
-	while (*str != '\0')
-	{
-		if (*str == (char) c)
-			return ((char *)str);
-		str++;
-	}
-	return (NULL);
-}
 
 char	*get_one_line(char *str)
 {
@@ -84,7 +69,7 @@ char	*erase_newline(char *note)
 	return (new);
 }
 
-char	*read_until_newline(int fd, char *note)
+char	*note_until_newline(int fd, char *note)
 {
 	char	*buf;
 	int		rd_bytes;
@@ -115,7 +100,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	note = read_until_newline(fd, note);
+	note = note_until_newline(fd, note);
 	if (!note)
 		return (NULL);
 	line = get_one_line(note);

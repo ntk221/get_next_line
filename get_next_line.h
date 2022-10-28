@@ -14,6 +14,6 @@ char	*ft_strchr(char *str, int c);
 char	*get_next_line(int fd);
 char	*erase_newline(char *note);
 char	*get_line(char *str);
-char	*read_until_newline(int fd, char *note);
+char	*note_until_newline(int fd, char *note);
 
 #endif
