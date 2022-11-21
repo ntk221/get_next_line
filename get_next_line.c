@@ -71,25 +71,18 @@ char	*erase_newline(char *note)
 
 char	*note_until_newline(int fd, char *note)
 {
-	char	*buf;
-	int		rd_bytes;
+	char	buf[BUFFER_SIZE];
+	ssize_t	rd_bytes;
 
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
 	rd_bytes = 1;
 	while (NULL == ft_strchr(note, '\n') && rd_bytes != 0)
 	{
-		rd_bytes = read(fd, buf, BUFFER_SIZE);
+		rd_bytes = read(fd, buf, sizeof(buf));
 		if (rd_bytes == -1)
-		{
-			free(buf);
 			return (NULL);
-		}
 		buf[rd_bytes] = '\0';
 		note = ft_strjoin(note, buf);
 	}
-	free(buf);
 	return (note);
 }
 
